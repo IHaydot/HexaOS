@@ -1,4 +1,8 @@
+#include "sources.h"
+#include "writer/writer.h"
 extern "C" void _start(){
-    char* mem = (char*) 0xb8000;
-    *mem = 'D';
+    SetCursorPosition(5);
+    while(true){
+
+    }   
 }
