@@ -10,7 +10,7 @@ LMBegin:
     mov fs, ax
     mov gs, ax
     mov edi, 0xb8000
-    mov rax, 0x7f207f207f207f20
+    mov rax, 0x8f208f208f208f20
     mov ecx, 500
     rep stosq
     call _start

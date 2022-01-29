@@ -1,5 +1,8 @@
 cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp)
 obj = ${cpp_sources:.cpp=.o}
+
+build/binaries.o: kernel/low_level/binaries.asm
+	nasm kernel/low_level/binaries.asm -f elf64 -o build/binaries.o
 %.o: %.cpp
 	gcc -ffreestanding -c $< -o $@ -w -O0
 build/kernel.o: kernel/kernel.cpp
@@ -11,8 +14,8 @@ build/boot: boot/boot.asm
 build/long_mode: boot/long_mode.asm
 	nasm boot/long_mode.asm -f elf64 -o build/long_mode
 
-build/kernel.bin: build/multiboot_header build/boot build/long_mode build/kernel.o $(obj)
-	x86_64-elf-ld -n -o build/kernel.bin -T target/linker.ld build/multiboot_header build/boot build/long_mode $(obj)
+build/kernel.bin: build/multiboot_header build/boot build/long_mode build/kernel.o $(obj) build/binaries.o
+	x86_64-elf-ld -n -o build/kernel.bin -T target/linker.ld build/multiboot_header build/boot build/long_mode $(obj) build/binaries.o
 
 run: build/kernel.bin
 	cp build/kernel.bin isofiles/boot/kernel.bin 

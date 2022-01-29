@@ -26,7 +26,7 @@ uint16_t strlen(const char *str){
     }
     return len;
 }
-void Hprintln(const char* str, uint8_t color = VGA_COLOR_BACKGROUND_LIGHT_GREY | VGA_COLOR_FOREGROUND_BLACK){
+void Hprintln(const char* str, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK){
     char* mem = (char*) VGA_START;
     uint8_t* strPTR = (uint8_t*) str;
     uint16_t index = cursor_pos;
@@ -65,10 +65,13 @@ const char* HexToString(T value) {
     return HexToStringOutput;
 }
 
-void cls(uint64_t color = VGA_COLOR_BACKGROUND_LIGHT_GREY | VGA_COLOR_FOREGROUND_BLACK){
-    SetCursorPosition(0);
-    for(uint64_t i = 0; i < 4000; i++){
-        Hprintln(" ", color);
+void cls(uint64_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK){
+    uint64_t value = 0;
+    value += color << 8;
+    value += color << 24;
+    value += color << 40;
+    value += color << 56;
+    for(uint64_t* i = (uint64_t*) 0xb8000; i < (uint64_t*)(0xb8000 + 4000); i++){
+        *i = value;
     }
-    SetCursorPosition(0);
 }
