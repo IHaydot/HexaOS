@@ -47,12 +47,11 @@ void Hprintln(const char* str, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | 
 }
 
 char HexToStringOutput[128];
-template <typename T>
-const char* HexToString(T value) {
-    T* vlptr = &value;
+const char* HexToString(uint8_t value) {
+    uint8_t* vlptr = &value;
     uint8_t* ptr;
     uint8_t tmp;
-    uint8_t size = (sizeof(T)) * 2 - 1;
+    uint8_t size = (sizeof(uint8_t)) * 2 - 1;
     uint8_t i;
     for(i = 0; i < size; i++){
         ptr = ((uint8_t*)vlptr + i);

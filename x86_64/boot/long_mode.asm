@@ -2,6 +2,7 @@ global LMBegin
 extern _start
 section .text
 bits 64
+
 LMBegin:
     mov ax, 0
     mov ss, ax
