@@ -64,6 +64,14 @@ const char* HexToString(uint8_t value) {
     return HexToStringOutput;
 }
 
+void HprintCHR(char printee, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK){
+    char* mem = (char*) VGA_START;
+    *(mem + cursor_pos * 2) = printee;
+    *(mem + cursor_pos * 2 + 1) = color;
+
+    SetCursorPosition(cursor_pos + 1);
+}
+
 void cls(uint64_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK){
     uint64_t value = 0;
     value += color << 8;
@@ -72,5 +80,12 @@ void cls(uint64_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_
     value += color << 56;
     for(uint64_t* i = (uint64_t*) 0xb8000; i < (uint64_t*)(0xb8000 + 4000); i++){
         *i = value;
+    }
+}
+
+const char* HexToAscii(uint8_t value){
+    switch(value){
+        case 'q':
+            return "q";
     }
 }

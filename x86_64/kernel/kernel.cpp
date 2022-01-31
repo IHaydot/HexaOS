@@ -14,8 +14,6 @@ extern "C" void _start(){
     Hprintln(LOGO, VGA_MAIN_BACKGROUND_COLOR | VGA_COLOR_FOREGROUND_GREEN);
     Hprintln("\n");
     Init_IDT();
-
-
     while(true){
 
     }   
