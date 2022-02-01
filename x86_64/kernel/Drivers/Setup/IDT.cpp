@@ -1,7 +1,8 @@
-#include "../../sources.h"
-#include "../../writer/writer.h"
-#include "../../IO/IO.h"
-#include "../KeyboardLookupTableS1.h"
+#include "../../sources.hpp"
+#include "../../writer/writer.hpp"
+#include "../../IO/IO.hpp"
+#include "../keyboard/KeyboardLookupTableS1.hpp"
+#include "../keyboard/Keyboard.hpp"
 struct IDT64{
     uint16_t low_offset;
     uint16_t selector;
@@ -35,7 +36,11 @@ void Init_IDT(){
 
 extern "C" void isr1_handler(){
     uint8_t ScanCode = inb(0x60);
-    HprintCHR(ScanCodeLookup[ScanCode]);
+    uint8_t chr = 0;
+    if(ScanCode < 0x3a){
+        chr = ScanCodeLookup[ScanCode];
+    }
+    keyboard_handler_main(ScanCode, chr);
     outb(0x20, 0x20);
     outb(0xa0, 0x20);
 }

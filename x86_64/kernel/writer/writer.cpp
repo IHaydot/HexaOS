@@ -1,6 +1,6 @@
-#include "../sources.h"
-#include "../IO/IO.h"
-#include "vga_colors.h"
+#include "../sources.hpp"
+#include "../IO/IO.hpp"
+#include "vga_colors.hpp"
 #define VGA_START 0xb8000
 #define VGA_COLOR 0x0f
 #define CURSOR1 0x3d4

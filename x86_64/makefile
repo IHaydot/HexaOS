@@ -1,6 +1,6 @@
-cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp)
+cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp kernel/Drivers/keyboard/*.cpp)
 obj = ${cpp_sources:.cpp=.o}
-asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm)
+asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm kernel/Drivers/keyboard/*.asm)
 asm_obj=$(asm_kernel_sources:.asm=.oa)
 %.oa: %.asm
 	nasm $< -f elf64 -o $@

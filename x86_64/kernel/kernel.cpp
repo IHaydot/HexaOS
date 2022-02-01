@@ -1,7 +1,8 @@
-#include "sources.h"
-#include "writer/writer.h"
-#include "writer/vga_colors.h"
-#include "Drivers/Setup/IDT.h"
+#include "sources.hpp"
+#include "writer/writer.hpp"
+#include "writer/vga_colors.hpp"
+#include "Drivers/Setup/IDT.hpp"
+#include "Drivers/keyboard/Keyboard.hpp"
 
 #define VGA_MAIN_BACKGROUND_COLOR 0x80
 #define VGA_MAIN_FOREGROUND_COLOR 0x00
@@ -14,6 +15,7 @@ extern "C" void _start(){
     Hprintln(LOGO, VGA_MAIN_BACKGROUND_COLOR | VGA_COLOR_FOREGROUND_GREEN);
     Hprintln("\n");
     Init_IDT();
+
     while(true){
 
     }   
