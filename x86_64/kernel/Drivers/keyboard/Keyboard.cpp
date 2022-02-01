@@ -8,9 +8,37 @@ void keyboard_handler1(uint8_t key, uint8_t chr){
     }
 }
 
+
+
 void keyboard_handler_main(uint8_t ScanCode, uint8_t chr, uint8_t mode = 1){
+    bool num_lock = false;
+    bool scroll_lock = false;
+    bool caps_lock = false;
+    
     switch(mode){
         case 1:
+            switch(ScanCode){
+                case 0x3e:
+                    Hprintln("\nShutting down OS...");
+                    asm volatile ("hlt");
+                case 0x45:
+                    num_lock = !num_lock;
+                    break;                
+                case 0x46:
+                    scroll_lock = !scroll_lock;
+                    break;
+                case 0x3a:
+                    caps_lock = !caps_lock;
+                    break;
+                case 0x0e:
+                    HandleBackspace();
+                    break;
+                case 0x1c:
+                    Hprintln("\n");
+                    break;
+                default:
+                    break;
+            }
             keyboard_handler1(ScanCode, chr);
             break;
         default:

@@ -12,6 +12,7 @@ uint16_t SetCursorPosFromWH(uint8_t width, uint8_t height){
     return height * 80 + width;
 }
 
+
 void SetCursorPosition(uint16_t val){
     outb(CURSOR1, 0x0f);
     outb(CURSOR2, (uint8_t)(val & 0xff));
@@ -88,4 +89,10 @@ const char* HexToAscii(uint8_t value){
         case 'q':
             return "q";
     }
+}
+
+void HandleBackspace(){
+    char* mem = (char*) VGA_START;
+    *(mem + cursor_pos * 2 - 2) = ' ';
+    SetCursorPosition(cursor_pos - 1);
 }
