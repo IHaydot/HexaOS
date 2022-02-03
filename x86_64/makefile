@@ -7,9 +7,9 @@ asm_obj=$(asm_kernel_sources:.asm=.oa)
 build/binaries.o: kernel/low_level/binaries.asm
 	nasm kernel/low_level/binaries.asm -f elf64 -o build/binaries.o
 %.o: %.cpp
-	x86_64-elf-gcc -ffreestanding -c $< -o $@ -w -O0
+	x86_64-elf-gcc -ffreestanding -c $< -o $@ -w -O0 -Wall
 build/kernel.o: kernel/kernel.cpp
-	x86_64-elf-gcc -ffreestanding -c kernel/kernel.cpp -o build/kernel.o
+	x86_64-elf-gcc -ffreestanding -c kernel/kernel.cpp -o build/kernel.o -Wall
 build/multiboot_header: boot/multiboot_header.asm
 	nasm boot/multiboot_header.asm -f elf64 -o build/multiboot_header
 build/boot: boot/boot.asm

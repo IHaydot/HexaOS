@@ -96,3 +96,9 @@ void HandleBackspace(){
     *(mem + cursor_pos * 2 - 2) = ' ';
     SetCursorPosition(cursor_pos - 1);
 }
+
+void HandleTab(){
+    char* mem = (char*) VGA_START;
+    *(mem + cursor_pos * 2 + 8) = ' ';
+    SetCursorPosition(cursor_pos + 4);
+}

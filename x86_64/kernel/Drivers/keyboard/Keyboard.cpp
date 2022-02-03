@@ -1,6 +1,7 @@
 #pragma once
 #include "../../sources.hpp"
 #include "../../writer/writer.hpp"
+#include "../keyboard/Keyboard.hpp"
 
 void keyboard_handler1(uint8_t key, uint8_t chr){
     if(chr != 0){
@@ -10,7 +11,7 @@ void keyboard_handler1(uint8_t key, uint8_t chr){
 
 
 
-void keyboard_handler_main(uint8_t ScanCode, uint8_t chr, uint8_t mode = 1){
+void keyboard_handler_main(uint8_t ScanCode, uint8_t chr, uint8_t mode){
     bool num_lock = false;
     bool scroll_lock = false;
     bool caps_lock = false;
@@ -36,6 +37,8 @@ void keyboard_handler_main(uint8_t ScanCode, uint8_t chr, uint8_t mode = 1){
                 case 0x1c:
                     Hprintln("\n");
                     break;
+                case 0x0f:
+                    HandleTab();
                 default:
                     break;
             }

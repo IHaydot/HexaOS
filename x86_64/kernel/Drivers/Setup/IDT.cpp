@@ -34,11 +34,38 @@ void Init_IDT(){
     InitIDTASM();
 }
 
+bool num_lock = false;
+bool scroll_lock = false;
+bool caps_lock = false;
+bool shift = false;
+
+void extern_keyboard_booleans(bool b1, bool b2 = false, bool b3 = false, bool b4 = false){
+    num_lock = b1;
+    scroll_lock = b2;
+    caps_lock = b3;
+    shift = b4;
+}
+
 extern "C" void isr1_handler(){
     uint8_t ScanCode = inb(0x60);
     uint8_t chr = 0;
+    if(ScanCode == 0x45){
+        num_lock = true;
+    }
     if(ScanCode < 0x3a){
-        chr = ScanCodeLookup[ScanCode];
+        if(!num_lock){
+            chr = ScanCodeLookup[ScanCode];
+        }else{
+            chr = ScanCodeLookup[ScanCode];
+            switch(ScanCode){
+                case 0x47:
+                    chr = '7';
+                    break;
+                case 0x48:
+                    chr = '8';
+                    break;
+            }
+        }
     }
     keyboard_handler_main(ScanCode, chr);
     outb(0x20, 0x20);
