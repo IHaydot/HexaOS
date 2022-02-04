@@ -122,4 +122,61 @@ namespace System
     }
 
     char IntToStringOutput[128];
+    const char* IntToString(int value){
+
+        uint8_t Neg = 0;
+        if(value < 0){
+            Neg = 1;
+            value *= -1;
+            IntToStringOutput[0] = '-';
+        }
+        uint8_t size = 0;
+        uint64_t STester = (uint64_t)value;
+        while (STester / 10 > 0){
+            STester /= 10;
+            size++;
+        }
+        uint8_t ind = 0;
+        uint64_t NewVal = (uint64_t)value;
+        while(NewVal / 10 > 0){
+            uint8_t remainder = NewVal % 10;
+            NewVal /= 10;
+            IntToStringOutput[Neg + size - ind] = remainder + 48;
+            ind++;
+        }
+        uint8_t remainder = NewVal % 10;
+        IntToStringOutput[Neg + size - ind] = remainder + 48;
+        IntToStringOutput[Neg + size + 1] = 0;
+        return IntToStringOutput;
+    }
+
+    char floatToStringOutput[128];
+    const char* floatToString(float value, uint8_t decimals){
+        uint8_t Neg = 0;
+        char* intPTR = (char*)IntToString((int)value);
+        char* floatPTR = floatToStringOutput;
+        if(value < 0){
+            Neg = 1;
+            value *= -1;
+            *floatPTR = '-';
+        }
+        while(*intPTR != 0){
+            *floatPTR = *intPTR;
+            floatPTR++;
+            intPTR++;
+        }
+        *floatPTR = '.';
+        floatPTR++;
+
+        float NewVal = value - (int)value;
+
+        for(uint8_t i = 0; i < decimals; i++){
+            NewVal *= 10;
+            *floatPTR = (int)NewVal + 48;
+            NewVal -= (int)NewVal;
+            floatPTR++;
+        }
+
+        return floatToStringOutput;
+    }
 }

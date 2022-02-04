@@ -13,5 +13,6 @@ namespace System
     void HprintCHR(char printee, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK);
     void HandleBackspace();
     void HandleTab();
-
+    const char* IntToString(int value);
+    const char* floatToString(float value, uint8_t decimals);
 }
