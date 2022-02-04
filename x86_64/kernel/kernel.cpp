@@ -4,6 +4,8 @@
 #include "Drivers/Setup/IDT.hpp"
 #include "Drivers/keyboard/Keyboard.hpp"
 
+using namespace System;
+
 #define VGA_MAIN_BACKGROUND_COLOR 0x80
 #define VGA_MAIN_FOREGROUND_COLOR 0x00
 #define VGA_MAIN_COLOR VGA_MAIN_BACKGROUND_COLOR | VGA_MAIN_FOREGROUND_COLOR
