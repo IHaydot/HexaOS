@@ -151,7 +151,7 @@ namespace System
     }
 
     char floatToStringOutput[128];
-    const char* floatToString(float value, uint8_t decimals){
+    const char* floatToString(float value, uint8_t decimals = 3){
         uint8_t Neg = 0;
         char* intPTR = (char*)IntToString((int)value);
         char* floatPTR = floatToStringOutput;

@@ -14,5 +14,5 @@ namespace System
     void HandleBackspace();
     void HandleTab();
     const char* IntToString(int value);
-    const char* floatToString(float value, uint8_t decimals);
+    const char* floatToString(float value, uint8_t decimals = 3);
 }
