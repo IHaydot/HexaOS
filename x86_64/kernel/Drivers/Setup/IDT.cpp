@@ -15,6 +15,7 @@ struct IDT64
 };
 extern IDT64 _idt[256];
 extern uint64_t isr1;
+extern uint64_t general_handler;
 extern "C" void InitIDTASM();
 namespace System
 {
@@ -22,6 +23,16 @@ namespace System
     void Init_IDT()
     {
         Hprintln("Initializing IDT...\n");
+
+        for(int i = 0; i < 257; i++){
+            _idt[i].zero = 0;
+            _idt[i].low_offset = (uint16_t)(((uint64_t)&general_handler & 0x000000000000ffff));
+            _idt[i].mid_offset = (uint16_t)(((uint64_t)&general_handler & 0x00000000ffff0000) >> 16);
+            _idt[i].high_offset = (uint32_t)(((uint64_t)&general_handler & 0xffffffff00000000) >> 32);
+            _idt[i].ist = 0;
+            _idt[i].selector = 0x08;
+            _idt[i].types_n_attr = 0x8e;
+        }
 
         _idt[1].zero = 0;
         _idt[1].low_offset = (uint16_t)(((uint64_t)&isr1 & 0x000000000000ffff));
@@ -49,6 +60,11 @@ namespace System
         scroll_lock = b2;
         caps_lock = b3;
         shift = b4;
+    }
+
+    extern "C" void general_handler_C(){
+        HprintER("THE KERNEL HAS HIT A FAULT OR A BREAKPOINT! CURRENTLY IT DOES NOT SUPPORT BREAKPOINTS! EXITING THE KERNEL...");
+        asm volatile("hlt");
     }
 
     extern "C" void isr1_handler()

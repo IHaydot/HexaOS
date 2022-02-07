@@ -3,9 +3,10 @@
 #include "writer/vga_colors.hpp"
 #include "Drivers/Setup/IDT.hpp"
 #include "Drivers/keyboard/Keyboard.hpp"
+#include "Tests/tests.hpp"
 
-#define VGA_MAIN_BACKGROUND_COLOR 0x80
-#define VGA_MAIN_FOREGROUND_COLOR 0x00
+#define VGA_MAIN_BACKGROUND_COLOR 0x00
+#define VGA_MAIN_FOREGROUND_COLOR 0x0f
 #define VGA_MAIN_COLOR VGA_MAIN_BACKGROUND_COLOR | VGA_MAIN_FOREGROUND_COLOR
 extern const char LOGO[];
 namespace System
@@ -17,9 +18,6 @@ namespace System
         Hprintln(LOGO, VGA_MAIN_BACKGROUND_COLOR | VGA_COLOR_FOREGROUND_GREEN);
         Hprintln("\n");
         Init_IDT();
-        float t = -10.0 / 3.0;
-        Hprintln(floatToString(t));
-        Hprintln("\n");
 
         while (true)
         {

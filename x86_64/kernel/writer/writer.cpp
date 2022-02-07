@@ -33,7 +33,7 @@ namespace System
         }
         return len;
     }
-    void Hprintln(const char *str, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK)
+    void Hprintln(const char *str, uint8_t color = VGA_COLOR_BACKGROUND_BLACK | VGA_COLOR_FOREGROUND_WHITE)
     {
         char *mem = (char *)VGA_START;
         uint8_t *strPTR = (uint8_t *)str;
@@ -76,7 +76,7 @@ namespace System
         return HexToStringOutput;
     }
 
-    void HprintCHR(char printee, uint8_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK)
+    void HprintCHR(char printee, uint8_t color = VGA_COLOR_BACKGROUND_BLACK | VGA_COLOR_FOREGROUND_WHITE)
     {
         char *mem = (char *)VGA_START;
         *(mem + cursor_pos * 2) = printee;
@@ -179,4 +179,12 @@ namespace System
 
         return floatToStringOutput;
     }
+
+    void HprintER(const char *str){
+        cursor_pos = 0;
+        cls(VGA_COLOR_BACKGROUND_RED | VGA_COLOR_FOREGROUND_BLACK);
+        Hprintln(str, VGA_COLOR_BACKGROUND_RED | VGA_COLOR_FOREGROUND_BLACK);
+    }
 }
+
+

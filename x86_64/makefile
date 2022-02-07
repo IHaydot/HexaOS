@@ -1,6 +1,6 @@
-cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp kernel/Drivers/keyboard/*.cpp)
+cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp kernel/Drivers/keyboard/*.cpp kernel/Tests/*.cpp)
 obj = ${cpp_sources:.cpp=.o}
-asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm kernel/Drivers/keyboard/*.asm)
+asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm kernel/Drivers/keyboard/*.asm kernel/Memory/DetMemory.asm kernel/Tests/*.asm)
 asm_obj=$(asm_kernel_sources:.asm=.oa)
 %.oa: %.asm
 	@echo "assembling $<...\n"
@@ -31,4 +31,4 @@ run: build/kernel.bin
 	@echo "Creating the iso image...\n"
 	grub-mkrescue --directory /usr/lib/grub/i386-pc -o hexaos-amd64.iso isofiles 
 	@echo "Running the OS...\n"
-	qemu-system-x86_64 -cdrom hexaos-amd64.iso -d cpu_reset -D qemu-logs
+	qemu-system-x86_64 -cdrom hexaos-amd64.iso -d cpu_reset -D qemu-logs -serial file:serial.log

@@ -36,3 +36,12 @@ InitIDTASM:
     sti
     ret
     GLOBAL InitIDTASM
+    
+[extern general_handler_C]
+
+general_handler:
+    PUSHAL
+    call general_handler_C
+    POPAL
+    hlt
+    GLOBAL general_handler
