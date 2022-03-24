@@ -5,10 +5,13 @@
 #define VGA_COLOR 0x0f
 #define CURSOR1 0x3d4
 #define CURSOR2 0x3d5
+#pragma once
 
 namespace System
 {
-
+    static uint16_t current_color;
+    static uint8_t current_background_color;
+    static uint8_t current_foreground_color;
     uint16_t cursor_pos = 0;
     uint16_t vga_color = VGA_COLOR;
     uint16_t SetCursorPosFromWH(uint8_t width, uint8_t height)
@@ -33,7 +36,7 @@ namespace System
         }
         return len;
     }
-    void Hprintln(const char *str, uint8_t color = VGA_COLOR_BACKGROUND_BLACK | VGA_COLOR_FOREGROUND_WHITE)
+    void Hprintln(const char *str)
     {
         char *mem = (char *)VGA_START;
         uint8_t *strPTR = (uint8_t *)str;
@@ -48,7 +51,7 @@ namespace System
                 break;
             default:
                 *(mem + index * 2) = *strPTR;
-                *(mem + index * 2 + 1) = color;
+                *(mem + index * 2 + 1) = current_color;
                 index++;
             }
             strPTR++;
@@ -56,37 +59,30 @@ namespace System
         SetCursorPosition(index);
     }
 
-    char HexToStringOutput[128];
-    const char *HexToString(uint8_t value)
-    {
-        uint8_t *vlptr = &value;
-        uint8_t *ptr;
-        uint8_t tmp;
-        uint8_t size = (sizeof(uint8_t)) * 2 - 1;
-        uint8_t i;
-        for (i = 0; i < size; i++)
-        {
-            ptr = ((uint8_t *)vlptr + i);
-            tmp = ((*ptr & 0xf0) >> 4);
-            HexToStringOutput[size - (i * 2 + 1)] = tmp + (tmp > 9 ? 55 : 48);
-            tmp = ((*ptr & 0x0f));
-            HexToStringOutput[size - (i * 2 + 0)] = tmp + (tmp > 9 ? 55 : 48);
-        }
-        HexToStringOutput[size + 1] = 0;
-        return HexToStringOutput;
-    }
-
-    void HprintCHR(char printee, uint8_t color = VGA_COLOR_BACKGROUND_BLACK | VGA_COLOR_FOREGROUND_WHITE)
+    void HprintCHR(char printee)
     {
         char *mem = (char *)VGA_START;
         *(mem + cursor_pos * 2) = printee;
-        *(mem + cursor_pos * 2 + 1) = color;
+        *(mem + cursor_pos * 2 + 1) = current_color;
 
         SetCursorPosition(cursor_pos + 1);
     }
 
-    void cls(uint64_t color = VGA_COLOR_BACKGROUND_DARK_GREY | VGA_COLOR_FOREGROUND_BLACK)
+    uint16_t VGAColorFrom(uint8_t background, uint8_t foreground){
+
+        return background | foreground;
+    }
+
+    void SetVGAColor(uint8_t background, uint8_t foreground){
+        current_color = VGAColorFrom(background, foreground);
+        current_background_color = background;
+        current_foreground_color = foreground;
+    }
+
+
+    void cls(uint8_t background, uint8_t foreground)
     {
+        uint64_t color = VGAColorFrom(background, foreground);
         uint64_t value = 0;
         value += color << 8;
         value += color << 24;
@@ -96,6 +92,10 @@ namespace System
         {
             *i = value;
         }
+        SetCursorPosition(0);
+        current_background_color = background;
+        current_foreground_color = foreground;
+        current_color = color;
     }
 
     const char *HexToAscii(uint8_t value)
@@ -182,8 +182,17 @@ namespace System
 
     void HprintER(const char *str){
         cursor_pos = 0;
-        cls(VGA_COLOR_BACKGROUND_RED | VGA_COLOR_FOREGROUND_BLACK);
-        Hprintln(str, VGA_COLOR_BACKGROUND_RED | VGA_COLOR_FOREGROUND_BLACK);
+        cls(VGA_COLOR_BACKGROUND_RED, VGA_COLOR_FOREGROUND_BLACK);
+        Hprintln(str);
+    }
+    void HprintSU(const char* str){
+        uint8_t background = current_background_color;
+        uint8_t foreground = current_foreground_color;
+        SetVGAColor(current_background_color, VGA_COLOR_FOREGROUND_GREEN);
+        Hprintln("\n");
+        Hprintln(str);
+        Hprintln("\n");
+        SetVGAColor(background, foreground);
     }
 }
 

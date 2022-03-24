@@ -1,6 +1,6 @@
-cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp kernel/Drivers/keyboard/*.cpp kernel/Tests/*.cpp)
+cpp_sources = $(wildcard kernel/*.cpp kernel/writer/*.cpp kernel/IO/*.cpp kernel/Drivers/*.cpp kernel/Drivers/Setup/*.cpp kernel/Drivers/keyboard/*.cpp kernel/Tests/*.cpp kernel/cmds/*.cpp kernel/cmds/boot/*.cpp kernel/Drivers/PS2/keyboard/*.cpp kernel/Drivers/PS2/*.cpp kernel/Drivers/USB/*.cpp kernel/Drivers/USB/Keyboard/*.cpp kernel/extras/*.cpp)
 obj = ${cpp_sources:.cpp=.o}
-asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm kernel/Drivers/keyboard/*.asm kernel/Memory/DetMemory.asm kernel/Tests/*.asm)
+asm_kernel_sources=$(wildcard kernel/Drivers/*.asm kernel/Drivers/Setup/*.asm kernel/Drivers/keyboard/*.asm kernel/Memory/DetMemory.asm kernel/Tests/*.asm kernel/*.asm kernel/cmds/*.asm kernel/cmds/boot/*.asm kernel/Drivers/PS2/*.asm kernel/Drivers/PS2/keyboard/*.asm kernel/Drivers/USB/*.asm kernel/Drivers/USB/Keyboard/*.asm kernel/extras/*.asm)
 asm_obj=$(asm_kernel_sources:.asm=.oa)
 %.oa: %.asm
 	@echo "assembling $<...\n"
@@ -32,3 +32,8 @@ run: build/kernel.bin
 	grub-mkrescue --directory /usr/lib/grub/i386-pc -o hexaos-amd64.iso isofiles 
 	@echo "Running the OS...\n"
 	qemu-system-x86_64 -cdrom hexaos-amd64.iso -d cpu_reset -D qemu-logs -serial file:serial.log
+	make clean
+.PHONY: clean
+clean:
+	rm -rf $(asm_obj) 
+	rm -rf $(obj)

@@ -39,9 +39,65 @@ InitIDTASM:
     
 [extern general_handler_C]
 
+[extern breakpoint_handler_C]
 general_handler:
     PUSHAL
     call general_handler_C
     POPAL
     hlt
     GLOBAL general_handler
+
+breakpoint_handler:
+    PUSHAL
+    call breakpoint_handler_C
+    POPAL
+    iretq
+    GLOBAL breakpoint_handler
+
+[extern division_handler_C]
+division_handler:
+    PUSHAL
+    call division_handler_C
+    POPAL
+    hlt
+    GLOBAL division_handler
+
+[extern overflow_handler_C]
+overflow_hanlder:
+    mov ebp, 0x400000
+    mov esp, ebp
+    PUSHAL
+    call overflow_handler_C
+    POPAL
+    hlt
+    GLOBAL overflow_hanlder
+
+[extern double_fault_handler_C]
+double_fault_handler:
+    PUSHAL
+    call double_fault_handler_C
+    POPAL
+    hlt
+    GLOBAL double_fault_handler
+
+[extern page_fault_handler_C]
+page_fault_handler:
+    PUSHAL
+    call page_fault_handler_C
+    POPAL
+    hlt
+    GLOBAL page_fault_handler
+[extern cmd_handler_C]
+cmd_handler:
+    PUSHAL
+    call cmd_handler_C
+    POPAL
+    iretq
+    GLOBAL cmd_handler
+[extern usb_init_handler_C]
+usb_init_handler:
+    PUSHAL
+    call usb_init_handler_C
+    POPAL
+    iretq
+    GLOBAL usb_init_handler
