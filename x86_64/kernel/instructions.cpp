@@ -3,7 +3,7 @@
 
 namespace System
 {
-    void int3()
+    void breakpoint()
     {
         asm volatile("int3");
     }

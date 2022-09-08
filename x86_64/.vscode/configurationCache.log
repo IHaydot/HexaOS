@@ -1,0 +1,1 @@
+{"buildTargets":["build/binaries.o","build/boot","build/kernel.bin","build/long_mode","build/multiboot_header","clean","run"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

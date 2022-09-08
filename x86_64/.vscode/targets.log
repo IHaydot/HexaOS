@@ -1,0 +1,538 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Aug 22 05:07:46 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+PAPERSIZE = a4
+# environment
+DESKTOP_SESSION = cinnamon
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+GTK3_MODULES = xapp-gtk3-module
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /home/ihaydot/.Xauthority
+# environment
+GDMSESSION = cinnamon
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+CURDIR := /home/ihaydot/Desktop/OSs/HexaOS/x86_64
+# makefile
+SHELL = /bin/sh
+# environment
+GDM_LANG = en_US
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/share/code/code
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-cinnamon:/etc/xdg
+# environment
+GTK_OVERLAY_SCROLLING = 1
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST :=  makefile
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+MAKELEVEL := 0
+# environment
+MANDATORY_PATH = /usr/share/gconf/cinnamon.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/cinnamon:/usr/share/gnome:/home/ihaydot/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+LC_NAME = bg_BG.UTF-8
+# environment
+VSCODE_CWD = /home/ihaydot
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/ihaydot/.local/bin:/usr/local/x86_64elfgcc/bin/:/home/ihaydot/.cargo/bin:/home/ihaydot/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/ihaydot/.dotnet/tools:/home/ihaydot/.dotnet/tools
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+SESSION_MANAGER = local/ihaydot-HP-EliteDesk-800-G1-TWR:@/tmp/.ICE-unix/1106,unix/ihaydot-HP-EliteDesk-800-G1-TWR:/tmp/.ICE-unix/1106
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'makefile', line 4)
+asm_obj = $(asm_kernel_sources:.asm=.oa)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/ihaydot
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = cinnamon
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 9060
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+PWD = /home/ihaydot/Desktop/OSs/HexaOS/x86_64
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
+# default
+.LOADED := 
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 1453
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/ihaydot
+# makefile (from 'makefile', line 3)
+asm_kernel_sources = $(shell find kernel/ -name "*.asm")
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+VSCODE_CODE_CACHE_PATH = /home/ihaydot/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+# environment
+LOGNAME = ihaydot
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'makefile', line 2)
+obj = ${cpp_sources:.cpp=.o}
+# environment
+XDG_VTNR = 7
+# environment
+LC_TIME = en_US.UTF-8
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# environment
+XDG_SESSION_ID = c1
+# environment
+USER = ihaydot
+# environment
+LC_MONETARY = bg_BG.UTF-8
+# makefile
+.DEFAULT_GOAL := build/binaries.o
+# environment
+XDG_CURRENT_DESKTOP = X-Cinnamon
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LC_TELEPHONE = bg_BG.UTF-8
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = en_US
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-31505e82-1.70.1-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+LC_PAPER = bg_BG.UTF-8
+# makefile (from 'makefile', line 1)
+cpp_sources = $(shell find kernel/ -name "*.cpp")
+# environment
+CINNAMON_VERSION = 5.2.7
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/cinnamon.default.path
+# 'override' directive
+.SHELLSTATUS := 0
+# default
+MAKEFILES := 
+# environment
+LC_NUMERIC = bg_BG.UTF-8
+# automatic
+<F = $(notdir $<)
+# environment
+LC_MEASUREMENT = bg_BG.UTF-8
+# environment
+LC_ALL = C
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+LC_IDENTIFICATION = bg_BG.UTF-8
+# default
+.RECIPEPREFIX := 
+# environment
+LC_ADDRESS = bg_BG.UTF-8
+# environment
+LANG = C
+# environment
+VSCODE_PID = 9060
+# variable set hash-table stats:
+# Load=111/1024=11%, Rehash=0, Collisions=11/147=7%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2070, inode 3410369): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+%.oa: %.asm
+#  recipe to execute (from 'makefile', line 6):
+	@echo "assembling $<...\n"
+	nasm $< -f elf64 -o $@
+
+%.o: %.cpp
+#  recipe to execute (from 'makefile', line 12):
+	@echo "Compiling $<...\n"
+	x86_64-elf-gcc -ffreestanding -c $< -o $@ -w -O0 -Wall
+
+# 2 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+kernel/Drivers/Setup/IDT.oa:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/kernel.oa:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+kernel/Drivers/Devices/pci.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+
+# Not a target:
+boot/multiboot_header.asm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Drivers/PS2/keyboard/Keyboard.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/binaries.o: kernel/low_level/binaries.asm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 9):
+	@echo "Assembling $<...\n"
+	nasm kernel/low_level/binaries.asm -f elf64 -o build/binaries.o
+
+# Not a target:
+kernel/low_level/binaries.asm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Drivers/PS2/keyboard/KeyboardLookupTableS1.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/boot: boot/boot.asm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 18):
+	@echo "Assembling $<...\n"
+	nasm boot/boot.asm -f elf64 -o build/boot
+
+# Not a target:
+kernel/writer/writer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Memory/mem_funcs.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+boot/long_mode.asm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-09 17:58:23.44745757
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+kernel/Drivers/serial.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/cmds/boot/boot_cmd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/extras/random.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/kernel.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/writer/hextmp.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/kernel.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Time/time.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/low_level/binaries.oa:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+boot/boot.asm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/extras/random.oa:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Drivers/USB/Keyboard/keyboard.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run: build/kernel.bin
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 29):
+	@echo "Copying $@ into isofiles/boot/kernel.bin...\n"
+	cp build/kernel.bin isofiles/boot/kernel.bin 
+	@echo "Creating the iso image...\n"
+	grub-mkrescue --directory /usr/lib/grub/i386-pc -o hexaos-amd64.iso isofiles 
+	@echo "Running the OS...\n"
+	qemu-system-x86_64 -cdrom hexaos-amd64.iso -d cpu_reset -D qemu-logs -serial file:serial.log
+	make clean
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 38):
+	rm -rf $(asm_obj) 
+	rm -rf $(obj)
+
+build/kernel.bin: build/multiboot_header build/boot build/long_mode build/kernel.o kernel/kernel.o kernel/Init/grub.o kernel/Time/time.o kernel/writer/hextmp.o kernel/writer/writer.o kernel/Tests/tests.o kernel/cmds/boot/boot_cmd.o kernel/Maths/Basics.o kernel/IO/IO.o kernel/Memory/mem_funcs.o kernel/instructions.o kernel/extras/random.o kernel/extras/encoder.o kernel/Drivers/PS2/keyboard/KeyboardLookupTableS1.o kernel/Drivers/PS2/keyboard/Keyboard.o kernel/Drivers/Setup/IDT.o kernel/Drivers/Devices/pci.o kernel/Drivers/USB/Keyboard/keyboard.o kernel/Drivers/serial.o build/binaries.o kernel/low_level/binaries.oa kernel/kernel.oa kernel/extras/random.oa kernel/Drivers/Setup/IDT.oa
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 25):
+	@echo "Linking $<...\n"
+	x86_64-elf-ld -n -o build/kernel.bin -T target/linker.ld build/multiboot_header build/boot build/long_mode $(obj) $(asm_obj)
+
+# Not a target:
+kernel/Init/grub.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/IO/IO.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/instructions.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Drivers/Setup/IDT.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/multiboot_header: boot/multiboot_header.asm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 15):
+	@echo "Assembling $<...\n"
+	nasm boot/multiboot_header.asm -f elf64 -o build/multiboot_header
+
+# Not a target:
+kernel/extras/encoder.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+kernel/Maths/Basics.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build/long_mode: boot/long_mode.asm
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 21):
+	@echo "Assembling $<...\n"
+	nasm boot/long_mode.asm -f elf64 -o build/long_mode
+
+# Not a target:
+kernel/Tests/tests.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=40/1024=4%, Rehash=0, Collisions=4/85=5%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 57 / storage = 964 B / avg = 16 B
+# current buf: size = 8162 B / used = 964 B / count = 57 / avg = 16 B
+
+# strcache performance: lookups = 75 / hit rate = 24%
+# hash-table stats:
+# Load=57/8192=1%, Rehash=0, Collisions=1/75=1%
+# Finished Make data base on Mon Aug 22 05:07:46 2022
+
+ 

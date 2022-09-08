@@ -2,6 +2,10 @@
 #include "../../../sources.hpp"
 #include "../../../writer/writer.hpp"
 #include "../keyboard/Keyboard.hpp"
+#include "../../../Init/grub.hpp"
+#include "../../../IO/IO.hpp"
+#include "KeyboardLookupTableS1.hpp"
+
 namespace System
 {
 
@@ -21,12 +25,16 @@ namespace System
         switch(ScanCode){
             case 0x3e:
                 Hprintln("\nShutting down the operating system...");
-                asm volatile("hlt"); //I know this doesnt really shut down the os
+                hlt(); //I know this doesnt really shut down the os
+                break;
+            
         }
     }
 
     void keyboard_handler_main(uint8_t ScanCode, uint8_t chr, uint8_t mode)
     {
+        previous_input = chr;
+        number_of_inputs++;
 
         bool num_lock = false; //Deal with these
         bool scroll_lock = false; //later 
@@ -65,6 +73,12 @@ namespace System
             Hprintln("Invalid keyboard handler mode");
             asm volatile("hlt");
         }
+    }
+    char InputPS2(){
+        long long num = number_of_inputs;
+        while(num == number_of_inputs);
+        HandleBackspace();
+        return previous_input;
     }
 
 }

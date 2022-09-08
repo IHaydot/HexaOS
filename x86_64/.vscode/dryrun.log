@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ihaydot/Desktop/OSs/HexaOS/x86_64'
+ 
+echo "Assembling kernel/low_level/binaries.asm...\n"
+nasm kernel/low_level/binaries.asm -f elf64 -o build/binaries.o
+make: Leaving directory '/home/ihaydot/Desktop/OSs/HexaOS/x86_64'
+ 

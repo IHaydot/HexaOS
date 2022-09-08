@@ -18,6 +18,16 @@ uint8_t inb(uint16_t port){
     return returnVALUE;
 }
 
+void outl(uint16_t port, uint32_t val){
+    asm volatile ("outl %0, %1" : : "a"(val), "Nd"(port));
+}
+
+uint32_t inl(uint16_t port){
+    uint32_t returnVALUE;
+    asm volatile ("inl %1, %0" : "=a"(returnVALUE) : "Nd"(port));
+    return returnVALUE;
+}
+
 void remap_PIC(){
     uint8_t mask1, mask2;
 

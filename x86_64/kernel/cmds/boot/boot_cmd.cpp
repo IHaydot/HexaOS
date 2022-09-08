@@ -4,7 +4,6 @@
 namespace System{
     void boot_cmd_init(){
         Hprintln("\n");
-        Hprintln("<BOOTCMD>");
-        
+        Hprintln("<BOOTCMD>\n");
     }
 }

@@ -2,10 +2,12 @@ global start
 extern LMBegin
 section .text 
 bits 32
-start:
+bootloader_start:
     mov esp, stack_top
+    mov [grub_magic], eax
+    mov [grub_info], ebx
     call check_multiboot
-    call check_cpuid
+    ;call check_cpuid
     call check_long_mode
     call set_up_page_tables
     call enable_paging
@@ -28,6 +30,10 @@ check_multiboot:
     mov al, "0"
     jmp error
 
+grub_magic: dd 0 
+GLOBAL grub_magic
+grub_info: db 0
+GLOBAL grub_info
 
 check_cpuid:
     pushfd

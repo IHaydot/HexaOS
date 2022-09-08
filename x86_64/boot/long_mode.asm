@@ -16,7 +16,7 @@ LMBegin:
     rep stosq
     call activateSSE
     call _start
-    hlt
+    jmp $
 
 activateSSE:
     mov rax, cr0

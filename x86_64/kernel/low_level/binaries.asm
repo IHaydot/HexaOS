@@ -8,3 +8,4 @@
 %endmacro
 
 IncBin LOGO, "kernel/logo.txt"
+IncBin HOMER, "kernel/homer.txt"

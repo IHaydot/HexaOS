@@ -3,6 +3,6 @@
 
 namespace System
 {
-    void int3();
+    void breakpoint();
     void int157();
 }

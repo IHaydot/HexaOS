@@ -1,6 +1,8 @@
 #include "../sources.hpp"
 #include "../IO/IO.hpp"
 #include "vga_colors.hpp"
+#include "../extras/random.hpp"
+#include "stddef.h"
 #define VGA_START 0xb8000
 #define VGA_COLOR 0x0f
 #define CURSOR1 0x3d4
@@ -9,6 +11,7 @@
 
 namespace System
 {
+    //--------------------------VGA---------------------------
     static uint16_t current_color;
     static uint8_t current_background_color;
     static uint8_t current_foreground_color;
@@ -80,7 +83,7 @@ namespace System
     }
 
 
-    void cls(uint8_t background, uint8_t foreground)
+    void cls(uint8_t background = current_background_color, uint8_t foreground = current_foreground_color)
     {
         uint64_t color = VGAColorFrom(background, foreground);
         uint64_t value = 0;
@@ -179,12 +182,6 @@ namespace System
 
         return floatToStringOutput;
     }
-
-    void HprintER(const char *str){
-        cursor_pos = 0;
-        cls(VGA_COLOR_BACKGROUND_RED, VGA_COLOR_FOREGROUND_BLACK);
-        Hprintln(str);
-    }
     void HprintSU(const char* str){
         uint8_t background = current_background_color;
         uint8_t foreground = current_foreground_color;
@@ -194,6 +191,96 @@ namespace System
         Hprintln("\n");
         SetVGAColor(background, foreground);
     }
+
+    void nln(){
+        Hprintln("\n");
+    }
+
+    void println(const char* message){
+        Hprintln(message); nln();
+    }
+
+    void HprintC(const char* msg, uint8_t background, uint8_t foreground){
+        uint8_t backgroundB = current_background_color;
+        uint8_t foregroundB = current_foreground_color;
+        SetVGAColor(background, foreground);
+        println(msg);
+        SetVGAColor(backgroundB, foregroundB);
+    }
+    void HprintER(const char *str){
+        uint8_t backgroundB = current_background_color;
+        uint8_t foregroundB = current_foreground_color;
+        SetVGAColor(current_background_color, VGA_COLOR_FOREGROUND_RED);
+        println(str);
+        SetVGAColor(backgroundB, foregroundB);
+    }
+    
+    char* formatOutput;
+    ///everything will be formatted to the previous value
+    const char* format(const char* a, const char* b = 0, const char* c = 0, const char* d = 0){
+        //formatOutput = (char*)malloc(sizeof(const char*) * 100);
+        if(a == 0){
+            return "need more values to format!";
+        }
+        const char* new_str;
+        uint8_t* aPTR = (uint8_t*)a;
+        int index = 0;
+        while(*aPTR != 0){
+            formatOutput[index] = *aPTR;
+            aPTR++;
+            index++;
+        }
+        if(b != 0){
+            uint8_t* bPTR = (uint8_t*)b;
+            while(*bPTR != 0){
+                formatOutput[index] = *bPTR;
+                bPTR++;
+                index++;
+            }
+        }
+        if(c != 0){
+            uint8_t* cPTR = (uint8_t*)c;
+            while(*cPTR != 0){
+                formatOutput[index] = *cPTR;
+                cPTR++;
+                index++;
+            }
+        }
+        if(d != 0){
+            uint8_t* dPTR = (uint8_t*)d;
+            while(*dPTR != 0){
+                formatOutput[index] = *dPTR;
+                dPTR++;
+                index++;
+            }
+        }
+
+        return formatOutput;
+    }
+
+    void NFTGeneratorOSINitVGA(){
+        char* mem_start = (char*) VIDEO_MEMORY_START;
+
+        for(int i = 0; i < VIDEO_MEMORY_END; i++){
+            uint8_t fcolor = rand_in_range(0x00, 0x0f, 0);
+            uint8_t bcolor = rand_in_range(0x00, 0xf0, 0);
+            int rand = rand_in_range(0, 15, 0);
+            char* cchar = (char*) random_pass_generator(1, 0);
+            mem_start[i * 2] = *cchar;
+            mem_start[i * 2 + 1] = VGAColorFrom(bcolor, fcolor);
+            //NFT generator OS :D
+        }
+    }
+
+    void printArr(char arr[], size_t size){
+        for(int i = 0; i < size; i++){
+            println((const char*)arr[i]);
+        }
+    }
+
+    //--------------------------VBE---------------------------
+    //TODO
+
 }
 
 

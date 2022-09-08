@@ -51,13 +51,6 @@ namespace System
         _idt[0].selector = 0x08;
         _idt[0].types_n_attr = 0x8e;
 
-        _idt[1].zero = 0;
-        _idt[1].low_offset = (uint16_t)(((uint64_t)&isr1 & 0x000000000000ffff));
-        _idt[1].mid_offset = (uint16_t)(((uint64_t)&isr1 & 0x00000000ffff0000) >> 16);
-        _idt[1].high_offset = (uint32_t)(((uint64_t)&isr1 & 0xffffffff00000000) >> 32);
-        _idt[1].ist = 0;
-        _idt[1].selector = 0x08;
-        _idt[1].types_n_attr = 0x8e;
 
         _idt[3].zero = 0;
         _idt[3].low_offset = (uint16_t)(((uint64_t)&breakpoint_handler & 0x000000000000ffff));
@@ -107,6 +100,14 @@ namespace System
         _idt[158].selector = 0x08;
         _idt[158].types_n_attr = 0x8e;
 
+        _idt[1].zero = 0;
+        _idt[1].low_offset = (uint16_t)(((uint64_t)&isr1 & 0x000000000000ffff));
+        _idt[1].mid_offset = (uint16_t)(((uint64_t)&isr1 & 0x00000000ffff0000) >> 16);
+        _idt[1].high_offset = (uint32_t)(((uint64_t)&isr1 & 0xffffffff00000000) >> 32);
+        _idt[1].ist = 0;
+        _idt[1].selector = 0x08;
+        _idt[1].types_n_attr = 0x8e;
+        
         remap_PIC();
 
         outb(0x21, 0xfd);
@@ -150,7 +151,11 @@ namespace System
     }
 
     extern "C" void page_fault_handler_C(){
-        HprintER("A PAGE FAULT HAPPENED! EXITING THE KERNEL...");
+        HprintER("A PAGE FAULT HAPPENED! EXITING THE KERNEL...\nHere is the adress accessed:");
+        asm volatile("mov %%cr2, %%rax\n\t"
+                     "mov %%eax, %0" : "=m" (cr2));
+        Hprintln("0x");
+        Hprintln(HexToString(cr2));
     }
 
     extern "C" void usb_init_handler_C(){
